@@ -132,5 +132,13 @@ cat3.products.create!({
   price: 2_483.75
 })
 
+cat3.products.create!({
+  name:  'Metalic Sofa',
+  description: "You know, the kind of sofa that's made of metal.",
+  image: open_asset('furniture4.jpg'),
+  quantity: 0,
+  price: 10_111.25
+})
+
 
 puts "DONE!"
