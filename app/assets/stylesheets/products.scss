@@ -41,7 +41,7 @@ main section.categories-show {
       }
 
       aside.price,
-      aside.sold-out-tag {
+      aside.sold-out-badge {
         position: absolute;
         top: 0;
         padding: 10px;
@@ -55,7 +55,7 @@ main section.categories-show {
         font-size: 0.8em;
       }
 
-      aside.sold-out-tag {
+      aside.sold-out-badge {
         left: 0;
         background-color: #da7777;
         color: white;
