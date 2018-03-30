@@ -140,5 +140,23 @@ cat3.products.create!({
   price: 10_111.25
 })
 
+# We'll create some fake users and reviews...
+products = Product.all
+
+0.upto(10) do |i| 
+  user = User.create!({
+    name: Faker::Name.first_name,
+    email: Faker::Internet.email,
+    password_digest: (0...50).map { ('a'..'z').to_a[rand(26)] }.join
+  })
+  0.upto(3) do |j|
+    user.reviews.create!({
+      product_id: products.sample.id,
+      rating: rand(6),
+      description: Faker::Hipster.paragraph(2)
+    })
+  end
+end
+
 
 puts "DONE!"
