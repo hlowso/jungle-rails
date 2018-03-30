@@ -10,6 +10,13 @@ class ReviewsController < ApplicationController
 		end
 	end
 
+	def destroy
+		review = Review.find(params[:id])
+		product_id = review.product_id
+		review.destroy
+		redirect_to product_path product_id
+	end
+
 	private
 		def check_session
 			if session[:user_id].nil?
