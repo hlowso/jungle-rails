@@ -83,6 +83,27 @@ main section.products-show {
       max-width: 100%;
     }
   }
+
+  // .textarea.description {
+  //   width: 200px;
+  // }
+
+  #review_desription {
+    // margin: auto;
+    width: 600px;
+  }
+
+  th.rating-cell,
+  td.rating-cell {
+    width: 50px;
+  }
+
+  th.button-cell,
+  td.button-cell {
+    width: 50px;
+  }
 }
+
+
 
 

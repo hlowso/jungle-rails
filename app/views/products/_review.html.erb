@@ -1,4 +1,4 @@
-<div class="panel panel-default items">
+<div class="panel panel-default reviews">
   <table class="table table-bordered">
     <thead>
       <tr>
@@ -7,10 +7,10 @@
     </thead>
     <tbody>
       <tr>
-        <td><%= review.rating %> / 5</td>
+        <td class="rating-cell"><%= review.rating %> / 5</td>
         <td><%= review.description %></td>
         <% if current_user && review.user_id == current_user.id %>
-          <td><%= button_to "delete", review_path(review.id), method: :delete %></td>
+          <td class="button-cell"><%= button_to "delete", review_path(review.id), method: :delete %></td>
         <% end %>
       </tr>
     </tbody>

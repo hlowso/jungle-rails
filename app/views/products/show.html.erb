@@ -13,6 +13,7 @@
       </div>
 
       <div class="col-sm-8">
+        <h3>Details</h3>
         <dl class="dl-horizontal">
           <dt>Name</dt>
           <dd><%= @product.name %></dd>
@@ -42,13 +43,20 @@
             <div>
               <%= f.hidden_field :user_id, :value => current_user.id %>
               <%= f.hidden_field :product_id, :value => @product.id %>
-              <dl class="dl-horizontal">
-                <dt>Rating /5:</dt>
-                <dd><%= f.select :rating, (0..5).to_a.reverse %></dd>
-                <dt>Description:</dt>
-                <dd><%= f.text_area :description %></dd>
-                <dt></dt>
-                <dd><%= f.submit "Create" %></dd>          
+              <div class="panel panel-default review_form">
+                <table class="table table-bordered">
+                  <thead>
+                    <th class="rating-cell">Rating /5:</th>
+                    <th>Description:</th>
+                    <th class="button-cell"></th>
+                  </thead>
+                  <tbody>
+                    <td class="rating-cell"><%= f.select :rating, (0..5).to_a.reverse %></td>
+                    <td class="textarea description"><%= f.text_area :description, size: "70x5" %></td>
+                    <td class="button-cell"><%= f.submit "Create" %></td>
+                  </tbody>
+                </table>         
+              </div>
             </div>
           <% end %>
         <% end %>
