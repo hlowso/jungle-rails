@@ -25,24 +25,36 @@
         </dl>
 
         <h3>Reviews</h3>
+        <% if this_user = current_user %>
+          <% @review ||= Review.new %>
+          <%= form_for [@product, @review] do |f| %>
+
+            <% if f.object.errors.any? %>
+              <div class="alert alert-danger">
+                <strong>The following errors prevented saving:</strong>
+                <ul>
+                  <% form.object.errors.full_messages.each do |error| %>
+                    <li><%= error %></li>
+                  <% end %>
+                </ul>
+              </div>
+            <% end %>
+            <div>
+              <%= f.hidden_field :user_id, :value => current_user.id %>
+              <%= f.hidden_field :product_id, :value => @product.id %>
+              <dl class="dl-horizontal">
+                <dt>Rating /5:</dt>
+                <dd><%= f.select :rating, (0..5).to_a.reverse %></dd>
+                <dt>Description:</dt>
+                <dd><%= f.text_area :description %></dd>
+                <dt></dt>
+                <dd><%= f.submit "Create" %></dd>          
+            </div>
+          <% end %>
+        <% end %>
         <% reviews = @product.reviews.includes(:user) %>
         <% reviews.each do |review| %>
-          <div class="panel panel-default items">
-            <table class="table table-bordered">
-              <thead>
-                <tr>
-                  <!-- <th colspan="2">Product</th> -->
-                  <th><h4><%= review.user.name %></h4></th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td><%= review.rating %> / 5</td>
-                  <td><%= review.description %></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+          <%= render 'review', review: review %>
         <% end %>
 
       </div>

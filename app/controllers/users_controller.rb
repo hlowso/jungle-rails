@@ -7,7 +7,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
-      redirect_to :products, notice: 'user created!'
+      redirect_to :login, notice: 'user created!'
     else
       render :new
     end
