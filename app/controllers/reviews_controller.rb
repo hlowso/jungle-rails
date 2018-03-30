@@ -1,4 +1,6 @@
 class ReviewsController < ApplicationController
+	before_action :check_session
+
 	def create
 		@review = Review.new(review_params)
 		if @review.save
@@ -9,6 +11,12 @@ class ReviewsController < ApplicationController
 	end
 
 	private
+		def check_session
+			if session[:user_id].nil?
+				render nothing: true, status: :unauthorized
+			end
+		end
+
 		def review_params
 			params.require(:review).permit(
 				:user_id,
