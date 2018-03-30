@@ -53,6 +53,7 @@
           <% end %>
         <% end %>
         <% reviews = @product.reviews.includes(:user) %>
+        <% reviews.order!('created_at DESC') %>
         <% reviews.each do |review| %>
           <%= render 'review', review: review %>
         <% end %>
