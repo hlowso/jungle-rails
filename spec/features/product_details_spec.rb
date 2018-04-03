@@ -18,10 +18,14 @@ RSpec.feature "ProductDetails", type: :feature, js: true do
   end
 
   scenario "They can click on a product to navigate to its details page" do
+    
+    #ACT
   	visit root_path
   	product_links = page.all("a[href^='/products']")
   	chosen_link = product_links.sample()
   	chosen_link.trigger('click')
+
+    # VERIFY
   	expect(page).to have_selector('section.products-show')
 
   end
