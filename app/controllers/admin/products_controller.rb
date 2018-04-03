@@ -27,7 +27,7 @@ class Admin::ProductsController < Admin::AdminController
   private
 
   def product_params
-    params.require(:product).permit(
+    result = params.require(:product).permit(
       :name,
       :description,
       :category_id,
@@ -35,6 +35,9 @@ class Admin::ProductsController < Admin::AdminController
       :image,
       :price
     )
+    cloud_obj = Cloudinary::Uploader.upload(result[:image])
+    result[:img_url] = cloud_obj['url']
+    return result
   end
 
 end
