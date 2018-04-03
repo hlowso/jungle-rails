@@ -1,0 +1,15 @@
+Cloudinary::Uploader.upload(open_asset('apparel1.jpg'))
+Cloudinary::Uploader.upload(open_asset('apparel2.jpg'))
+Cloudinary::Uploader.upload(open_asset('apparel3.jpg'))
+Cloudinary::Uploader.upload(open_asset('apparel4.jpg'))
+Cloudinary::Uploader.upload(open_asset('apparel5.jpg'))
+Cloudinary::Uploader.upload(open_asset('apparel6.jpg'))
+
+Cloudinary::Uploader.upload(open_asset('electronics1.jpg'))
+Cloudinary::Uploader.upload(open_asset('electronics2.jpg'))
+Cloudinary::Uploader.upload(open_asset('electronics3.jpg'))
+
+Cloudinary::Uploader.upload(open_asset('furniture1.jpg'))
+Cloudinary::Uploader.upload(open_asset('furniture2.jpg'))
+Cloudinary::Uploader.upload(open_asset('furniture3.jpg'))
+Cloudinary::Uploader.upload(open_asset('furniture4.jpg'))

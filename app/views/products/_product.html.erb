@@ -1,7 +1,11 @@
 <article class="product">
   <header>
     <%= link_to product do %>
-      <%= image_tag product.image.thumb, alt: product.name %>
+      <% if Rails.env.development? %>
+        <%= image_tag product.image.thumb, alt: product.name %>
+      <% else %>
+        <%= image_tag product.image, alt: product.name %>
+      <% end %>
       <h4><%= product.name %></h4>
     <% end %>
   </header>

@@ -38,10 +38,11 @@ Product.destroy_all
 cat1.products.create!({
   name:  'Men\'s Classy shirt',
   description: Faker::Hipster.paragraph(4),
-  image: open_asset('apparel1.jpg'),
+  image: Rails.env.development? ? open_asset('apparel1.jpg') : 'http://res.cloudinary.com/dc4jkh9o8/image/upload/v1522715553/ij0uah8gf1myrfwvwnlp.jpg',
   quantity: 10,
   price: 64.99
 })
+
 
 cat1.products.create!({
   name:  'Women\'s Zebra pants',
