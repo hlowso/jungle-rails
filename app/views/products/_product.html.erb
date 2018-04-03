@@ -2,9 +2,10 @@
   <header>
     <%= link_to product do %>
       <% if Rails.env.development? %>
-        <%= image_tag product.image.thumb, alt: product.name %>
-      <% else %>
+        <% puts product.image %>
         <%= image_tag product.image, alt: product.name %>
+      <% else %>
+        <%= image_tag product.image.thumb, alt: product.name %>
       <% end %>
       <h4><%= product.name %></h4>
     <% end %>
