@@ -1,7 +1,7 @@
 <% if product = Product.find_by(id: product_id) %>
   <tr>
     <td>
-      <%= image_tag product.image.tiny %>
+      <%= image_tag product.img_url, size: '100x100' %>
     </td>
     <td>
       <h4><%= product.name %></h4>

@@ -13,6 +13,10 @@ def open_asset(file_name)
   File.open(Rails.root.join('db', 'seed_assets', file_name))
 end
 
+def open_image(file_name)
+  Magick::Image.read(Rails.root.join('db', 'seed_assets', file_name))[0]
+end
+
 # Only run on development (local) instances not on production, etc.
 # unless Rails.env.development?
 #   puts "Development seeds only (for now)!"
@@ -35,10 +39,12 @@ puts "Re-creating Products ..."
 
 Product.destroy_all
 
+# pry.binding
+
 cat1.products.create!({
   name:  'Men\'s Classy shirt',
   description: Faker::Hipster.paragraph(4),
-  image: 'http://res.cloudinary.com/dc4jkh9o8/image/upload/v1522715553/ij0uah8gf1myrfwvwnlp.jpg',
+  img_url: 'http://res.cloudinary.com/dc4jkh9o8/image/upload/v1522715553/ij0uah8gf1myrfwvwnlp.jpg',
   quantity: 10,
   price: 64.99
 })
@@ -47,7 +53,7 @@ cat1.products.create!({
 cat1.products.create!({
   name:  'Women\'s Zebra pants',
   description: Faker::Hipster.paragraph(4),
-  image: open_asset('apparel2.jpg'),
+  img_url: 'http://res.cloudinary.com/dc4jkh9o8/image/upload/v1522715554/lpzlbedvuf86ajxuwpca.jpg',
   quantity: 18,
   price: 124.99
 })
@@ -55,7 +61,7 @@ cat1.products.create!({
 cat1.products.create!({
   name:  'Hipster Hat',
   description: Faker::Hipster.paragraph(4),
-  image: open_asset('apparel3.jpg'),
+  img_url: 'http://res.cloudinary.com/dc4jkh9o8/image/upload/v1522715555/xij2kufedjwp3ck2ydea.jpg',
   quantity: 4,
   price: 34.49
 })
@@ -63,7 +69,7 @@ cat1.products.create!({
 cat1.products.create!({
   name:  'Hipster Socks',
   description: Faker::Hipster.paragraph(4),
-  image: open_asset('apparel4.jpg'),
+  img_url: 'http://res.cloudinary.com/dc4jkh9o8/image/upload/v1522715555/qkeuw0ynxvefieulblya.jpg',
   quantity: 8,
   price: 25.00
 })
@@ -71,7 +77,7 @@ cat1.products.create!({
 cat1.products.create!({
   name:  'Russian Spy Shoes',
   description: Faker::Hipster.paragraph(4),
-  image: open_asset('apparel5.jpg'),
+  img_url: 'http://res.cloudinary.com/dc4jkh9o8/image/upload/v1522715557/cdtddnjbq4bswkkujdvb.jpg',
   quantity: 8,
   price: 1_225.00
 })
@@ -79,7 +85,7 @@ cat1.products.create!({
 cat1.products.create!({
   name:  'Human Feet Shoes',
   description: Faker::Hipster.paragraph(4),
-  image: open_asset('apparel6.jpg'),
+  img_url: 'http://res.cloudinary.com/dc4jkh9o8/image/upload/v1522715557/jvawvbywxdfwnlz0gn9z.jpg',
   quantity: 82,
   price: 224.50
 })
@@ -88,7 +94,7 @@ cat1.products.create!({
 cat2.products.create!({
   name:  'Modern Skateboards',
   description: Faker::Hipster.paragraph(4),
-  image: open_asset('electronics1.jpg'),
+  img_url: 'http://res.cloudinary.com/dc4jkh9o8/image/upload/v1522715558/hej3huqdtrr5jaatdhww.jpg',
   quantity: 40,
   price: 164.49
 })
@@ -96,7 +102,7 @@ cat2.products.create!({
 cat2.products.create!({
   name:  'Hotdog Slicer',
   description: Faker::Hipster.paragraph(4),
-  image: open_asset('electronics2.jpg'),
+  img_url: 'http://res.cloudinary.com/dc4jkh9o8/image/upload/v1522715558/ihvrsfbgxgd7fey9zdmt.jpg',
   quantity: 3,
   price: 26.00
 })
@@ -104,7 +110,7 @@ cat2.products.create!({
 cat2.products.create!({
   name:  'World\'s Largest Smartwatch',
   description: Faker::Hipster.paragraph(4),
-  image: open_asset('electronics3.jpg'),
+  img_url: 'http://res.cloudinary.com/dc4jkh9o8/image/upload/v1522715559/zeq8jloyowgfae0d0uap.jpg',
   quantity: 32,
   price: 2_026.29
 })
@@ -112,7 +118,7 @@ cat2.products.create!({
 cat3.products.create!({
   name:  'Optimal Sleeping Bed',
   description: Faker::Hipster.paragraph(4),
-  image: open_asset('furniture1.jpg'),
+  img_url: 'http://res.cloudinary.com/dc4jkh9o8/image/upload/v1522715560/jbqoahewxc8mngpg3wit.jpg',
   quantity: 320,
   price: 3_052.00
 })
@@ -120,7 +126,7 @@ cat3.products.create!({
 cat3.products.create!({
   name:  'Electric Chair',
   description: Faker::Hipster.paragraph(4),
-  image: open_asset('furniture2.jpg'),
+  img_url: 'http://res.cloudinary.com/dc4jkh9o8/image/upload/v1522715560/edezh01ppjmlih1wqn9g.jpg',
   quantity: 2,
   price: 987.65
 })
@@ -128,15 +134,15 @@ cat3.products.create!({
 cat3.products.create!({
   name:  'Red Bookshelf',
   description: Faker::Hipster.paragraph(4),
-  image: open_asset('furniture3.jpg'),
+  img_url: 'http://res.cloudinary.com/dc4jkh9o8/image/upload/v1522715561/cyhkkzwm8eohbkwi38rs.jpg',
   quantity: 23,
   price: 2_483.75
 })
 
 cat3.products.create!({
   name:  'Metalic Sofa',
-  description: "You know, the kind of sofa that's made of metal.",
-  image: open_asset('furniture4.jpg'),
+  description: Faker::Hipster.paragraph(4),
+  img_url: 'http://res.cloudinary.com/dc4jkh9o8/image/upload/v1522715561/qsxuodfyk8wwefjzrztd.jpg',
   quantity: 0,
   price: 10_111.25
 })

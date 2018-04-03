@@ -35,8 +35,8 @@ class Admin::ProductsController < Admin::AdminController
       :image,
       :price
     )
-    result[:image] = Cloudinary::Uploader.upload(result[:image]).url if !Rails.env.development?
-    # puts result[:image]
+    cloud_obj = Cloudinary::Uploader.upload(result[:image])
+    result[:img_url] = cloud_obj['url']
     return result
   end
 
